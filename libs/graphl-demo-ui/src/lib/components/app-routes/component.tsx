@@ -1,3 +1,4 @@
+import {ApolloSandbox} from "@apollo/sandbox/react";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import {ActivityFeed} from "../activity-feed";
 import {UserProfile} from "../user-profile";
@@ -9,6 +10,12 @@ export function AppRoutes() {
       <Routes>
         <Route Component={PostDetail} path="/post/:postId" />
         <Route Component={UserProfile} path="/profile/:userId" />
+        <Route
+          Component={() => (
+            <ApolloSandbox initialEndpoint="http://localhost:4000/graphql" />
+          )}
+          path="/sandbox"
+        />
         <Route Component={ActivityFeed} path="/" />
       </Routes>
     </BrowserRouter>
