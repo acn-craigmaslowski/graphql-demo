@@ -18,4 +18,4 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/graphql-demo?schema=
 
 5. Run `npx nx run graphql-demo:serve` to start the Web App server.
 
-6. Navigate to [http://localhost:4200](http://localhost:4200) to view the app home page or [http://localhost:4200/sandbox](http://localhost:4200) to view the Apollo GraphQL sandbox.
+6. Navigate to [http://localhost:4200](http://localhost:4200) to view the app home page or [http://localhost:4200/sandbox](http://localhost:4200/sandbox) to view the Apollo GraphQL sandbox.
