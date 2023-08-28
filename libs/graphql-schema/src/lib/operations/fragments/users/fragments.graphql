@@ -1,4 +1,5 @@
 fragment UserScalars on User {
   id
   name
+  profileImageUrl
 }

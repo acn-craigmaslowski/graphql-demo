@@ -30,7 +30,7 @@ export type RequireFields<T, K extends keyof T> = Omit<T, K> & {
   [P in K]-?: NonNullable<T[P]>;
 };
 const defaultOptions = {} as const;
-// Generated on 2023-08-25T14:19:32-07:00
+// Generated on 2023-08-28T09:32:35-07:00
 
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
 
@@ -305,6 +305,7 @@ export type User = {
   id: Scalars["String"]["output"];
   name: Scalars["String"]["output"];
   posts?: Maybe<Array<Post>>;
+  profileImageUrl?: Maybe<Scalars["String"]["output"]>;
   reactions?: Maybe<Array<Reaction>>;
 };
 
@@ -684,6 +685,11 @@ export type UserResolvers<
     ParentType,
     ContextType
   >;
+  profileImageUrl?: Resolver<
+    Maybe<ResolversTypes["String"]>,
+    ParentType,
+    ContextType
+  >;
   reactions?: Resolver<
     Maybe<Array<ResolversTypes["Reaction"]>>,
     ParentType,
@@ -711,7 +717,12 @@ export type CommentScalarsFragment = {
 export type CommentPostEdgeFragment = {
   __typename?: "Post";
   id: string;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type CommentReactionEdgeFragment = {
@@ -719,13 +730,19 @@ export type CommentReactionEdgeFragment = {
   id: string;
   lastModifiedDate: string;
   reaction: ReactionType;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type CommentUserEdgeFragment = {
   __typename?: "User";
   id: string;
   name: string;
+  profileImageUrl?: string | null;
 };
 
 export type CommentWithEdgesFragment = {
@@ -738,9 +755,19 @@ export type CommentWithEdgesFragment = {
     id: string;
     lastModifiedDate: string;
     reaction: ReactionType;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }> | null;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type CommentWithPostEdgeFragment = {
@@ -751,16 +778,28 @@ export type CommentWithPostEdgeFragment = {
   post?: {
     __typename?: "Post";
     id: string;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   } | null;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type PostScalarsFragment = {
   __typename?: "Post";
   id: string;
   body: string;
+  commentCount?: number | null;
   lastModifiedDate: string;
+  reactionCount?: number | null;
 };
 
 export type PostCommentEdgeFragment = {
@@ -773,9 +812,19 @@ export type PostCommentEdgeFragment = {
     id: string;
     lastModifiedDate: string;
     reaction: ReactionType;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }> | null;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type PostReactionEdgeFragment = {
@@ -783,28 +832,43 @@ export type PostReactionEdgeFragment = {
   id: string;
   lastModifiedDate: string;
   reaction: ReactionType;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type PostUserEdgeFragment = {
   __typename?: "User";
   id: string;
   name: string;
+  profileImageUrl?: string | null;
 };
 
 export type PostWithUserEdgeFragment = {
   __typename?: "Post";
   id: string;
   body: string;
+  commentCount?: number | null;
   lastModifiedDate: string;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  reactionCount?: number | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type PostWithConditionalEdgesFragment = {
   __typename?: "Post";
   id: string;
   body: string;
+  commentCount?: number | null;
   lastModifiedDate: string;
+  reactionCount?: number | null;
   comments?: Array<{
     __typename?: "Comment";
     body: string;
@@ -815,18 +879,38 @@ export type PostWithConditionalEdgesFragment = {
       id: string;
       lastModifiedDate: string;
       reaction: ReactionType;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }> | null;
   reactions?: Array<{
     __typename?: "Reaction";
     id: string;
     lastModifiedDate: string;
     reaction: ReactionType;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }> | null;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type ReactionScalarsFragment = {
@@ -841,13 +925,23 @@ export type ReactionCommentEdgeFragment = {
   body: string;
   id: string;
   lastModifiedDate: string;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
   reactions?: Array<{
     __typename?: "Reaction";
     id: string;
     lastModifiedDate: string;
     reaction: ReactionType;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }> | null;
 };
 
@@ -855,14 +949,22 @@ export type ReactionPostEdgeFragment = {
   __typename?: "Post";
   id: string;
   body: string;
+  commentCount?: number | null;
   lastModifiedDate: string;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  reactionCount?: number | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type ReactionUserEdgeFragment = {
   __typename?: "User";
   id: string;
   name: string;
+  profileImageUrl?: string | null;
 };
 
 export type ReactionWithUserEdgeFragment = {
@@ -870,7 +972,12 @@ export type ReactionWithUserEdgeFragment = {
   id: string;
   lastModifiedDate: string;
   reaction: ReactionType;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type ReactionWithAllEdgesFragment = {
@@ -886,31 +993,59 @@ export type ReactionWithAllEdgesFragment = {
     post?: {
       __typename?: "Post";
       id: string;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     } | null;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
     reactions?: Array<{
       __typename?: "Reaction";
       id: string;
       lastModifiedDate: string;
       reaction: ReactionType;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
   } | null;
   post?: {
     __typename?: "Post";
     id: string;
     body: string;
+    commentCount?: number | null;
     lastModifiedDate: string;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    reactionCount?: number | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   } | null;
-  user?: {__typename?: "User"; id: string; name: string} | null;
+  user?: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  } | null;
 };
 
 export type UserScalarsFragment = {
   __typename?: "User";
   id: string;
   name: string;
+  profileImageUrl?: string | null;
 };
 
 export type CreateCommentMutationVariables = Exact<{
@@ -965,7 +1100,9 @@ export type CreatePostMutation = {
     __typename?: "Post";
     id: string;
     body: string;
+    commentCount?: number | null;
     lastModifiedDate: string;
+    reactionCount?: number | null;
   };
 };
 
@@ -979,7 +1116,9 @@ export type DeletePostMutation = {
     __typename?: "Post";
     id: string;
     body: string;
+    commentCount?: number | null;
     lastModifiedDate: string;
+    reactionCount?: number | null;
   };
 };
 
@@ -993,7 +1132,9 @@ export type UpdatePostMutation = {
     __typename?: "Post";
     id: string;
     body: string;
+    commentCount?: number | null;
     lastModifiedDate: string;
+    reactionCount?: number | null;
   };
 };
 
@@ -1056,9 +1197,19 @@ export type GetCommentsQuery = {
       id: string;
       lastModifiedDate: string;
       reaction: ReactionType;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }>;
 };
 
@@ -1075,7 +1226,9 @@ export type GetPostsQuery = {
     __typename?: "Post";
     id: string;
     body: string;
+    commentCount?: number | null;
     lastModifiedDate: string;
+    reactionCount?: number | null;
     comments?: Array<{
       __typename?: "Comment";
       body: string;
@@ -1086,18 +1239,38 @@ export type GetPostsQuery = {
         id: string;
         lastModifiedDate: string;
         reaction: ReactionType;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
       }> | null;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
     reactions?: Array<{
       __typename?: "Reaction";
       id: string;
       lastModifiedDate: string;
       reaction: ReactionType;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }>;
 };
 
@@ -1112,7 +1285,12 @@ export type GetReactionsQuery = {
     id: string;
     lastModifiedDate: string;
     reaction: ReactionType;
-    user?: {__typename?: "User"; id: string; name: string} | null;
+    user?: {
+      __typename?: "User";
+      id: string;
+      name: string;
+      profileImageUrl?: string | null;
+    } | null;
   }>;
 };
 
@@ -1120,7 +1298,12 @@ export type GetCurrentUserQueryVariables = Exact<{[key: string]: never}>;
 
 export type GetCurrentUserQuery = {
   __typename?: "Query";
-  currentUser: {__typename?: "User"; id: string; name: string};
+  currentUser: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  };
 };
 
 export type GetUserInteractionsQueryVariables = Exact<{
@@ -1133,6 +1316,7 @@ export type GetUserInteractionsQuery = {
     __typename?: "User";
     id: string;
     name: string;
+    profileImageUrl?: string | null;
     comments?: Array<{
       __typename?: "Comment";
       body: string;
@@ -1141,9 +1325,19 @@ export type GetUserInteractionsQuery = {
       post?: {
         __typename?: "Post";
         id: string;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
       } | null;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
     reactions?: Array<{
       __typename?: "Reaction";
@@ -1158,25 +1352,52 @@ export type GetUserInteractionsQuery = {
         post?: {
           __typename?: "Post";
           id: string;
-          user?: {__typename?: "User"; id: string; name: string} | null;
+          user?: {
+            __typename?: "User";
+            id: string;
+            name: string;
+            profileImageUrl?: string | null;
+          } | null;
         } | null;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
         reactions?: Array<{
           __typename?: "Reaction";
           id: string;
           lastModifiedDate: string;
           reaction: ReactionType;
-          user?: {__typename?: "User"; id: string; name: string} | null;
+          user?: {
+            __typename?: "User";
+            id: string;
+            name: string;
+            profileImageUrl?: string | null;
+          } | null;
         }> | null;
       } | null;
       post?: {
         __typename?: "Post";
         id: string;
         body: string;
+        commentCount?: number | null;
         lastModifiedDate: string;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        reactionCount?: number | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
       } | null;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
   };
 };
@@ -1191,11 +1412,14 @@ export type GetUserPostsQuery = {
     __typename?: "User";
     id: string;
     name: string;
+    profileImageUrl?: string | null;
     posts?: Array<{
       __typename?: "Post";
       id: string;
       body: string;
+      commentCount?: number | null;
       lastModifiedDate: string;
+      reactionCount?: number | null;
       comments?: Array<{
         __typename?: "Comment";
         body: string;
@@ -1206,18 +1430,38 @@ export type GetUserPostsQuery = {
           id: string;
           lastModifiedDate: string;
           reaction: ReactionType;
-          user?: {__typename?: "User"; id: string; name: string} | null;
+          user?: {
+            __typename?: "User";
+            id: string;
+            name: string;
+            profileImageUrl?: string | null;
+          } | null;
         }> | null;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
       }> | null;
       reactions?: Array<{
         __typename?: "Reaction";
         id: string;
         lastModifiedDate: string;
         reaction: ReactionType;
-        user?: {__typename?: "User"; id: string; name: string} | null;
+        user?: {
+          __typename?: "User";
+          id: string;
+          name: string;
+          profileImageUrl?: string | null;
+        } | null;
       }> | null;
-      user?: {__typename?: "User"; id: string; name: string} | null;
+      user?: {
+        __typename?: "User";
+        id: string;
+        name: string;
+        profileImageUrl?: string | null;
+      } | null;
     }> | null;
   };
 };
@@ -1228,7 +1472,12 @@ export type GetUserQueryVariables = Exact<{
 
 export type GetUserQuery = {
   __typename?: "Query";
-  users: {__typename?: "User"; id: string; name: string};
+  users: {
+    __typename?: "User";
+    id: string;
+    name: string;
+    profileImageUrl?: string | null;
+  };
 };
 
 export const CommentScalarsFragmentDoc = gql`
@@ -1242,6 +1491,7 @@ export const UserScalarsFragmentDoc = gql`
   fragment UserScalars on User {
     id
     name
+    profileImageUrl
   }
 `;
 export const CommentPostEdgeFragmentDoc = gql`
@@ -1277,7 +1527,9 @@ export const PostScalarsFragmentDoc = gql`
   fragment PostScalars on Post {
     id
     body
+    commentCount
     lastModifiedDate
+    reactionCount
   }
 `;
 export const PostUserEdgeFragmentDoc = gql`

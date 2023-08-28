@@ -1,6 +1,12 @@
 import {Avatar, Box, Flex, Link, Stack, Text} from "@chakra-ui/react";
+import {UserAvatar} from "../user-avatar";
+import {useAppTopNavigation} from "./hook";
 
 export function AppTopNavigation() {
+  const {
+    currentUserQuery: {data, error, loading},
+  } = useAppTopNavigation();
+
   return (
     <Box
       boxShadow="0px 2px 4px 0px rgba(0,0,0,0.2);"
@@ -14,15 +20,11 @@ export function AppTopNavigation() {
             <Text>EverybodyLoveEverybodyBook</Text>
           </Stack>
         </Link>
-        <Link href="/profile/0e2c5827-8a06-4439-9978-76c4d24eb82f">
-          <Stack align="center" direction="row">
-            <Text>Jackie Moon</Text>
-            <Avatar
-              name="Jackie Moon"
-              src="http://localhost:4200/jackie-moon.jpg"
-            />
-          </Stack>
-        </Link>
+        {!loading && !error && data?.currentUser && (
+          <Link href={`/profile/${data.currentUser.id}`}>
+            <UserAvatar showName={true} user={data.currentUser} />
+          </Link>
+        )}
       </Flex>
     </Box>
   );

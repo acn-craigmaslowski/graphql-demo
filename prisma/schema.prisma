@@ -59,6 +59,7 @@ model User {
   name String
   createdDate DateTime @default(now())
   lastModifiedDate DateTime @default(now())
+  profileImageUrl String?
   comments Comment[]
   posts Post[]
   reactions Reaction[]

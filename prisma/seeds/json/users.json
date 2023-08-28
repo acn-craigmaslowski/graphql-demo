@@ -1,5 +1,8 @@
 [
-  {"name": "Jackie Moon"},
+  {
+    "name": "Jackie Moon",
+    "profileImageUrl": "http://localhost:4200/jackie-moon.jpg"
+  },
   {"name": "Alice Johnson"},
   {"name": "David Smith"},
   {"name": "Emily Williams"},

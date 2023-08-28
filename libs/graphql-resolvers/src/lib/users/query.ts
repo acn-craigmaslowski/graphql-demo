@@ -3,7 +3,7 @@ import {Resolvers} from "@graphql-demo/graphql-schema";
 
 const resolvers: Resolvers = {
   Query: {
-    currentUser: async (_parent, queryVariables, {getCurrentUser}) => {
+    currentUser: async (_parent, _queryVariables, {getCurrentUser}) => {
       return await getCurrentUser();
     },
     users: async (_parent, queryVariables, {getCurrentUser, prisma}) => {

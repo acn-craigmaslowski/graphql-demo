@@ -7,7 +7,7 @@
  *   libs/graphql-schema/codegen.yml
  ************************************************/
 
-// Generated on 2023-08-25T14:19:28-07:00
+// Generated on 2023-08-28T09:32:31-07:00
 
 import {buildSchema} from "graphql";
 
@@ -208,6 +208,7 @@ type User {
   id: String!
   name: String!
   posts: [Post!]
+  profileImageUrl: String
   reactions: [Reaction!]
 }
 `);
