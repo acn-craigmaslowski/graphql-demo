@@ -30,7 +30,7 @@ export type RequireFields<T, K extends keyof T> = Omit<T, K> & {
   [P in K]-?: NonNullable<T[P]>;
 };
 const defaultOptions = {} as const;
-// Generated on 2023-08-28T09:32:35-07:00
+// Generated on 2023-08-28T12:58:52-07:00
 
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
 
@@ -219,6 +219,7 @@ export type Query = {
 
 /** Root Query */
 export type QueryCommentsArgs = {
+  fetchReactions: Scalars["Boolean"]["input"];
   input: ReadCommentsQueryInput;
 };
 
@@ -623,7 +624,7 @@ export type QueryResolvers<
     Array<ResolversTypes["Comment"]>,
     ParentType,
     ContextType,
-    RequireFields<QueryCommentsArgs, "input">
+    RequireFields<QueryCommentsArgs, "fetchReactions" | "input">
   >;
   currentUser?: Resolver<ResolversTypes["User"], ParentType, ContextType>;
   heartbeat?: Resolver<
@@ -1308,6 +1309,7 @@ export type GetCurrentUserQuery = {
 
 export type GetUserInteractionsQueryVariables = Exact<{
   input: ReadUserQueryInput;
+  fetchReactions: Scalars["Boolean"]["input"];
 }>;
 
 export type GetUserInteractionsQuery = {
@@ -1580,7 +1582,7 @@ export const CommentReactionEdgeFragmentDoc = gql`
 export const CommentWithEdgesFragmentDoc = gql`
   fragment CommentWithEdges on Comment {
     ...CommentScalars
-    reactions {
+    reactions @include(if: $fetchReactions) {
       ...CommentReactionEdge
     }
     user {
@@ -2127,7 +2129,7 @@ export const GetCommentsDocument = gql`
     $input: ReadCommentsQueryInput!
     $fetchReactions: Boolean!
   ) {
-    comments(input: $input) {
+    comments(input: $input, fetchReactions: $fetchReactions) {
       ...CommentWithEdges
     }
   }
@@ -2363,7 +2365,10 @@ export type GetCurrentUserQueryResult = Apollo.QueryResult<
   GetCurrentUserQueryVariables
 >;
 export const GetUserInteractionsDocument = gql`
-  query getUserInteractions($input: ReadUserQueryInput!) {
+  query getUserInteractions(
+    $input: ReadUserQueryInput!
+    $fetchReactions: Boolean!
+  ) {
     users(input: $input) {
       ...UserScalars
       comments {
@@ -2392,6 +2397,7 @@ export const GetUserInteractionsDocument = gql`
  * const { data, loading, error } = useGetUserInteractionsQuery({
  *   variables: {
  *      input: // value for 'input'
+ *      fetchReactions: // value for 'fetchReactions'
  *   },
  * });
  */

@@ -4,6 +4,7 @@ import {
   ReactionWithAllEdgesFragment,
   UserScalarsFragment,
 } from "@graphql-demo/graphql-schema";
+import {formatDistanceToNow} from "date-fns";
 
 export type UserInteractionItem =
   | CommentWithPostEdgeFragment
@@ -41,6 +42,9 @@ export function UserInteractionListItem({
             {"."}
           </Text>
         )}
+        <Text color="gray.400">{`${formatDistanceToNow(
+          parseInt(item.lastModifiedDate)
+        )} ago`}</Text>
       </CardBody>
     </Card>
   );

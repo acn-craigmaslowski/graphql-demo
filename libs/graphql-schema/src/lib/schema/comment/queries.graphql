@@ -3,5 +3,8 @@ extend type Query {
   Returns a list of all Comments for a specific for a specific user or for
   a specific piece of content.
   """
-  comments(input: ReadCommentsQueryInput!): [Comment!]!
+  comments(
+    input: ReadCommentsQueryInput!
+    fetchReactions: Boolean!
+  ): [Comment!]!
 }

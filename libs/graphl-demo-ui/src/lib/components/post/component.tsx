@@ -8,20 +8,25 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import {PostWithConditionalEdgesFragment} from "@graphql-demo/graphql-schema";
+import {GetPostsDocument} from "@graphql-demo/graphql-schema";
 import {formatDistanceToNow} from "date-fns";
-import {FiThumbsUp, FiMessageCircle} from "react-icons/fi";
+import {FiMessageCircle} from "react-icons/fi";
 import {ReactionsSummary} from "../reactions-summary";
 import {UsePostProps, usePost} from "./hook";
 import {CommentList} from "../comment-list";
+import {ReactionButton} from "../reaction-button";
+import {ReactionIcon} from "../reaction-icon";
+import {CreateCommentForm} from "../create-comment-form";
 
-export interface PostProps extends UsePostProps {
-  post: PostWithConditionalEdgesFragment;
-  showAllComments?: boolean;
-}
+export type PostProps = UsePostProps;
 
-export function Post({post, showAllComments = false, ...props}: PostProps) {
-  const {commentsExpansionDisclosure} = usePost(props);
+export function Post(props: PostProps) {
+  const {post} = props;
+  const {
+    commentsExpansionDisclosure,
+    currentUsersReaction,
+    isCommentFormVisibleDisclosure,
+  } = usePost(props);
 
   return (
     <Card minW="40vw">
@@ -50,11 +55,39 @@ export function Post({post, showAllComments = false, ...props}: PostProps) {
         </Stack>
       </CardBody>
       <Divider color="gray.200" />
-      <Stack direction="row" justify="space-around" p="0.25rem" width="100%">
-        <Button leftIcon={<FiThumbsUp />} variant="ghost">
-          Like
-        </Button>
-        <Button leftIcon={<FiMessageCircle />} variant="ghost">
+      <Stack
+        align="center"
+        direction="row"
+        justify="space-around"
+        p="0.25rem"
+        width="100%"
+      >
+        {!currentUsersReaction ? (
+          <ReactionButton
+            postId={post.id}
+            refetchQueries={[
+              {
+                query: GetPostsDocument,
+                variables: {
+                  fetchComments: true,
+                  fetchReactions: true,
+                  fetchUser: true,
+                  input: {postId: post.id},
+                },
+              },
+            ]}
+          />
+        ) : (
+          <Stack align="center" direction="row">
+            <ReactionIcon reaction={currentUsersReaction.reaction} />
+            <Text>{currentUsersReaction.reaction}</Text>
+          </Stack>
+        )}
+        <Button
+          leftIcon={<FiMessageCircle />}
+          onClick={isCommentFormVisibleDisclosure.onOpen}
+          variant="ghost"
+        >
           Comment
         </Button>
       </Stack>
@@ -66,9 +99,27 @@ export function Post({post, showAllComments = false, ...props}: PostProps) {
               comments={post.comments || []}
               limit={2}
               expansionDisclosure={commentsExpansionDisclosure}
+              post={post}
             />
           </CardBody>
         </>
+      )}
+      {(isCommentFormVisibleDisclosure.isOpen ||
+        commentsExpansionDisclosure.isOpen) && (
+        <CreateCommentForm
+          post={post}
+          refetchQueries={[
+            {
+              query: GetPostsDocument,
+              variables: {
+                fetchUser: false,
+                fetchReactions: false,
+                fetchComments: true,
+                input: {postId: post.id},
+              },
+            },
+          ]}
+        />
       )}
     </Card>
   );

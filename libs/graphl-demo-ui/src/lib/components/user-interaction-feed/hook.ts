@@ -8,6 +8,7 @@ export function useUserInteractionFeed() {
   const userId = useUserIdParam();
   const userInteractionsQuery = useGetUserInteractionsQuery({
     variables: {
+      fetchReactions: true,
       input: {userId},
     },
   });

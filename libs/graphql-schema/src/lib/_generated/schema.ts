@@ -7,7 +7,7 @@
  *   libs/graphql-schema/codegen.yml
  ************************************************/
 
-// Generated on 2023-08-28T09:32:31-07:00
+// Generated on 2023-08-28T12:58:51-07:00
 
 import {buildSchema} from "graphql";
 
@@ -119,7 +119,7 @@ type Query {
   Returns a list of all Comments for a specific for a specific user or for
   a specific piece of content.
   """
-  comments(input: ReadCommentsQueryInput!): [Comment!]!
+  comments(fetchReactions: Boolean!, input: ReadCommentsQueryInput!): [Comment!]!
 
   """Returns the currently logged in user's info"""
   currentUser: User!

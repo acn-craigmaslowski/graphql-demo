@@ -1,6 +1,9 @@
-import {DocumentNode} from "@apollo/client";
-import {useCreatePostMutation} from "@graphql-demo/graphql-schema";
+import {
+  CreatePostMutation,
+  useCreatePostMutation,
+} from "@graphql-demo/graphql-schema";
 import {ChangeEvent, useCallback, useState} from "react";
+import {RefetchQueries} from "../../etc";
 
 export type UseCreatePostFormProps = Parameters<typeof useCreatePostForm>[0];
 export type UseCreatePostFormReturn = ReturnType<typeof useCreatePostForm>;
@@ -8,7 +11,7 @@ export type UseCreatePostFormReturn = ReturnType<typeof useCreatePostForm>;
 export function useCreatePostForm({
   refetchQueries = [],
 }: {
-  refetchQueries?: DocumentNode[];
+  refetchQueries?: RefetchQueries<CreatePostMutation>;
 }) {
   const [body, setBody] = useState("");
   const [isSaved, setIsSaved] = useState(false);

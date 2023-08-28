@@ -2,6 +2,7 @@ import {
   ReactionType,
   ReactionWithUserEdgeFragment,
 } from "@graphql-demo/graphql-schema";
+import {sortByLastModifiedDate} from "../../etc";
 
 export type UseReactionsSummaryProps = Parameters<
   typeof useReactionsSummary
@@ -19,8 +20,8 @@ export function useReactionsSummary({
   const haveSad = !!reactions.find(r => r.reaction === ReactionType.Sad);
   const haveWow = !!reactions.find(r => r.reaction === ReactionType.Wow);
 
-  const message = reactions.length
-    ? `${reactions[0].user?.name || ""} ${
+  const message = [...reactions].sort(sortByLastModifiedDate).length
+    ? `${reactions[reactions.length - 1].user?.name || ""} ${
         reactions.length - 1 > 0 ? ` and ${reactions.length - 1} others` : ""
       }`
     : "0 Reactions";

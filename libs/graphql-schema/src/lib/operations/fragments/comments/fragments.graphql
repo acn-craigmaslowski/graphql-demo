@@ -21,7 +21,7 @@ fragment CommentUserEdge on User {
 
 fragment CommentWithEdges on Comment {
   ...CommentScalars
-  reactions {
+  reactions @include(if: $fetchReactions) {
     ...CommentReactionEdge
   }
   user {

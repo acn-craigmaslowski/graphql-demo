@@ -1,4 +1,7 @@
-query getUserInteractions($input: ReadUserQueryInput!) {
+query getUserInteractions(
+  $input: ReadUserQueryInput!
+  $fetchReactions: Boolean!
+) {
   users(input: $input) {
     ...UserScalars
     comments {

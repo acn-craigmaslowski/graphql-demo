@@ -1,5 +1,5 @@
 query getComments($input: ReadCommentsQueryInput!, $fetchReactions: Boolean!) {
-  comments(input: $input) {
+  comments(input: $input, fetchReactions: $fetchReactions) {
     ...CommentWithEdges
   }
 }
