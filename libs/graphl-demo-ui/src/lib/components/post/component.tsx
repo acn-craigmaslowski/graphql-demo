@@ -33,7 +33,10 @@ export function Post(props: PostProps) {
       <CardBody>
         <Link href={`/profile/${post.user?.id}`}>
           <Stack align="center" direction="row" mb="1.5rem">
-            <Avatar name={post.user?.name || ""} />
+            <Avatar
+              name={post.user?.name || ""}
+              src={post.user?.profileImageUrl || undefined}
+            />
             <Stack gap="0">
               <Text>{post.user?.name || ""}</Text>
               <Text fontSize="0.75rem">

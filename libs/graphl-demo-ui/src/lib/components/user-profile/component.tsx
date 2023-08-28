@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Heading,
   Stack,
   Tab,
@@ -24,7 +25,14 @@ export function UserProfile() {
       <SpinnerAndError error={error} loading={loading} />
       {!loading && data && (
         <Stack>
-          <Heading>{data.users.name}</Heading>
+          <Stack align="center" direction="row">
+            <Avatar
+              name={data.users.name}
+              size="2xl"
+              src={data.users.profileImageUrl || undefined}
+            />
+            <Heading>{data.users.name}</Heading>
+          </Stack>
           <Tabs>
             <TabList>
               <Tab>Feed</Tab>

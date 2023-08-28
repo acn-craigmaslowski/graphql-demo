@@ -3,14 +3,44 @@
     "name": "Jackie Moon",
     "profileImageUrl": "http://localhost:4200/jackie-moon.jpg"
   },
-  {"name": "Alice Johnson"},
-  {"name": "David Smith"},
-  {"name": "Emily Williams"},
-  {"name": "Michael Brown"},
-  {"name": "Olivia Jones"},
-  {"name": "Sugar Dunkerton"},
-  {"name": "Sophia Miller"},
-  {"name": "William Wilson"},
-  {"name": "Ava Moore"},
-  {"name": "Ethan Taylor"}
+  {
+    "name": "Alice Johnson",
+    "profileImageUrl": "http://localhost:4200/female01.jpg"
+  },
+  {
+    "name": "David Smith",
+    "profileImageUrl": "http://localhost:4200/male01.jpg"
+  },
+  {
+    "name": "Emily Williams",
+    "profileImageUrl": "http://localhost:4200/female02.jpg"
+  },
+  {
+    "name": "Michael Brown",
+    "profileImageUrl": "http://localhost:4200/male02.jpg"
+  },
+  {
+    "name": "Olivia Jones",
+    "profileImageUrl": "http://localhost:4200/female03.jpg"
+  },
+  {
+    "name": "Sugar Dunkerton",
+    "profileImageUrl": "http://localhost:4200/sugar-dunkerton.jpg"
+  },
+  {
+    "name": "Sophia Miller",
+    "profileImageUrl": "http://localhost:4200/female04.jpg"
+  },
+  {
+    "name": "William Wilson",
+    "profileImageUrl": "http://localhost:4200/male03.jpg"
+  },
+  {
+    "name": "Ava Moore",
+    "profileImageUrl": "http://localhost:4200/female05.jpg"
+  },
+  {
+    "name": "Ethan Taylor",
+    "profileImageUrl": "http://localhost:4200/male04.jpg"
+  }
 ]
