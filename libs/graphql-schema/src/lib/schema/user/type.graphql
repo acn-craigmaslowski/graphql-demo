@@ -1,8 +1,5 @@
 type User {
   id: String!
-  comments: [Comment!]
   name: String!
-  posts: [Post!]
   profileImageUrl: String
-  reactions: [Reaction!]
 }
