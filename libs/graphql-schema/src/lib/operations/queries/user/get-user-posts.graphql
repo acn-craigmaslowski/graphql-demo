@@ -1,0 +1,23 @@
+query getUserPosts($input: ReadUserQueryInput!) {
+  users(input: $input) {
+    ...UserScalars
+    posts {
+      ...PostScalars
+      comments {
+        ...CommentScalars
+        reactions {
+          ...ReactionWithUserEdge
+        }
+        user {
+          ...UserScalars
+        }
+      }
+      reactions {
+        ...ReactionWithUserEdge
+      }
+      user {
+        ...UserScalars
+      }
+    }
+  }
+}

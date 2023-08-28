@@ -1,0 +1,5 @@
+mutation updatePost($input: UpdatePostMutationInput!) {
+  updatePost(input: $input) {
+    ...PostScalars
+  }
+}

@@ -1,0 +1,5 @@
+mutation createPost($input: CreatePostMutationInput!) {
+  createPost(input: $input) {
+    ...PostScalars
+  }
+}

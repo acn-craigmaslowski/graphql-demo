@@ -1,0 +1,16 @@
+extend type Mutation {
+  """
+  Create a new Comment
+  """
+  createComment(input: CreateCommentMutationInput!): Comment!
+
+  """
+  Update an existing Comment
+  """
+  updateComment(input: UpdateCommentMutationInput!): Comment!
+
+  """
+  Delete a Comment
+  """
+  deleteComment(input: DeleteCommentMutationInput!): Comment!
+}

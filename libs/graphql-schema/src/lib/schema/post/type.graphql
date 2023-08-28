@@ -1,0 +1,8 @@
+type Post {
+  body: String!
+  createdDate: String!
+  commentCount: Int
+  id: String!
+  lastModifiedDate: String!
+  reactionCount: Int
+}

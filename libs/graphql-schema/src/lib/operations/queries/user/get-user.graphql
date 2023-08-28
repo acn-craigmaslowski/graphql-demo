@@ -1,0 +1,5 @@
+query getUser($input: ReadUserQueryInput!) {
+  users(input: $input) {
+    ...UserScalars
+  }
+}

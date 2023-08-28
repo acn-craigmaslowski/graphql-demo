@@ -1,0 +1,11 @@
+query getUserInteractions($input: ReadUserQueryInput!) {
+  users(input: $input) {
+    ...UserScalars
+    comments {
+      ...CommentWithPostEdge
+    }
+    reactions {
+      ...ReactionWithAllEdges
+    }
+  }
+}

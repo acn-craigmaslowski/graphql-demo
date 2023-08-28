@@ -1,0 +1,5 @@
+query getReactions($input: ReadReactionsQueryInput!) {
+  reactions(input: $input) {
+    ...ReactionWithUserEdge
+  }
+}

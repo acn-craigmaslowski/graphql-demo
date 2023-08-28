@@ -1,0 +1,20 @@
+input CreateReactionMutationInput {
+  commentId: String
+  postId: String
+  reaction: ReactionType!
+}
+
+input ReadReactionsQueryInput {
+  commentId: String
+  postId: String
+  userId: String
+}
+
+input UpdateReactionMutationInput {
+  id: String!
+  reaction: ReactionType!
+}
+
+input DeleteReactionMutationInput {
+  id: String!
+}

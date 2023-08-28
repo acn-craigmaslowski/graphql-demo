@@ -1,0 +1,131 @@
+overwrite: true
+schema: "libs/graphql-schema/src/lib/schema/**/*.graphql"
+generates:
+  # concatenate schema and make it importable in TypeScript
+  libs/graphql-schema/src/lib/_generated/schema.ts:
+    hooks:
+      # lint and format
+      afterOneFileWrite:
+        - eslint --config ./.eslintrc.json --fix
+        - prettier --config-path ./.prettierrc --write
+    plugins:
+      - add:
+          placement: "prepend"
+          content: |
+            /***********************************************
+             * THIS CODE IS AUTO-GENERATED
+             * DO NOT EDIT MANUALLY!
+             * To regenerate this file run:
+             *   npx nx run graphql-schema:generate
+             * Edit this generated file's configuration at:
+             *   libs/graphql-schema/codegen.yml
+             ************************************************/
+      - time
+      - add:
+          placement: "content"
+          content: |
+            import {buildSchema} from "graphql";
+
+            export const schema = buildSchema(`
+      - schema-ast
+      - add:
+          placement: "content"
+          content: |
+            `);
+
+            export default schema;
+  # concatenate schema and make it importable in TypeScript
+  libs/graphql-schema/src/lib/_generated/typeDefs.ts:
+    hooks:
+      # lint and format
+      afterOneFileWrite:
+        - eslint --config ./.eslintrc.json --fix
+        - prettier --config-path ./.prettierrc --write
+    plugins:
+      - add:
+          placement: "prepend"
+          content: |
+            /***********************************************
+             * THIS CODE IS AUTO-GENERATED
+             * DO NOT EDIT MANUALLY!
+             * To regenerate this file run:
+             *   npx nx run graphql-schema:generate
+             * Edit this generated file's configuration at:
+             *   libs/graphql-schema/codegen.yml
+             ************************************************/
+      - time
+      - add:
+          placement: "content"
+          content: |
+            import {gql} from "@apollo/client";
+
+            export const typeDefs = gql`
+      - schema-ast
+      - add:
+          placement: "content"
+          content: |
+            `;
+            export default typeDefs;
+    config:
+      includeDirectives: true
+  # generate all types from schema for TypeScript
+  # genarate React hooks for all operations
+  libs/graphql-schema/src/lib/_generated/generated.ts:
+    config:
+      contextType: "../etc#GraphQLDemoContext"
+    documents: "libs/graphql-schema/src/lib/operations/**/*.graphql"
+    hooks:
+      # lint and format
+      afterOneFileWrite:
+        - eslint --config ./.eslintrc.json --fix
+        - prettier --config-path ./.prettierrc --write
+    plugins:
+      - add:
+          placement: "prepend"
+          content: |
+            /***********************************************
+             * THIS CODE IS AUTO-GENERATED
+             * DO NOT EDIT MANUALLY!
+             * To regenerate this file run:
+             *   npx nx run graphql-schema:generate
+             * Edit this generated file's configuration at:
+             *   libs/graphql-schema/codegen.yml
+             ************************************************/
+      - time
+      - add:
+          placement: "content"
+          content: |
+            /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types */
+      - typescript
+      - typescript-resolvers
+      - typescript-operations
+      - typescript-react-apollo
+      - named-operations-object:
+          identifierName: "OPERATION_NAMES"
+          useConsts: true
+  # generate a "cask" index file exporting * from generated files
+  libs/graphql-schema/src/lib/_generated/index.ts:
+    hooks:
+      # lint and format
+      afterOneFileWrite:
+        - eslint --config ./.eslintrc.json --fix
+        - prettier --config-path ./.prettierrc --write
+    plugins:
+      - add:
+          placement: "prepend"
+          content: |
+            /***********************************************
+             * THIS CODE IS AUTO-GENERATED   
+             * DO NOT EDIT MANUALLY!
+             * To regenerate this file run:
+             *   npx nx run graphql-schema:generate
+             * Edit this generated file's configuration at:
+             *   libs/graphql-schema/codegen.yml
+             ************************************************/
+      - time
+      - add:
+          placement: "content"
+          content: |
+            export * from "./generated";
+            export * from "./schema";
+            export * from "./typeDefs";

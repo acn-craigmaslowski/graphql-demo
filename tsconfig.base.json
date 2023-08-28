@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@graphql-demo/api-server-core": ["libs/api-server-core/src/index.ts"],
+      "@graphql-demo/data-persistence": ["libs/data-persistence/src/index.ts"],
+      "@graphql-demo/graphl-demo-ui": ["libs/graphl-demo-ui/src/index.ts"],
+      "@graphql-demo/graphql-resolvers": [
+        "libs/graphql-resolvers/src/index.ts"
+      ],
+      "@graphql-demo/graphql-schema": ["libs/graphql-schema/src/index.ts"],
+      "@graphql-demo/graphql-server": ["libs/graphql-server/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

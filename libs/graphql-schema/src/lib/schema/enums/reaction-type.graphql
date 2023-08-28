@@ -1,0 +1,7 @@
+enum ReactionType {
+  Angry
+  Like
+  Love
+  Sad
+  Wow
+}

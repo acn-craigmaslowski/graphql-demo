@@ -1,0 +1,5 @@
+mutation deleteReaction($input: DeleteReactionMutationInput!) {
+  deleteReaction(input: $input) {
+    ...ReactionScalars
+  }
+}

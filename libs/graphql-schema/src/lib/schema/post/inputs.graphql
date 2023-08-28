@@ -1,0 +1,17 @@
+input CreatePostMutationInput {
+  body: String!
+}
+
+input ReadPostsQueryInput {
+  postId: String
+  userId: String
+}
+
+input UpdatePostMutationInput {
+  id: String!
+  body: String!
+}
+
+input DeletePostMutationInput {
+  id: String!
+}

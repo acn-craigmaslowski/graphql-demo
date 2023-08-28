@@ -1,0 +1,5 @@
+extend type User {
+  comments: [Comment!]
+  posts: [Post!]
+  reactions: [Reaction!]
+}

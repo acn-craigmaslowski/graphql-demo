@@ -1,0 +1,11 @@
+extend type Query {
+  """
+  Returns the currently logged in user's info
+  """
+  currentUser: User!
+
+  """
+  Returns a specific user
+  """
+  users(input: ReadUserQueryInput!): User!
+}

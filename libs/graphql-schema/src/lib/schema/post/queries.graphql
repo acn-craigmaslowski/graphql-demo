@@ -1,0 +1,6 @@
+extend type Query {
+  """
+  Returns a list of all Posts, a single Post, or all Posts for a specific user
+  """
+  posts(input: ReadPostsQueryInput!): [Post!]!
+}

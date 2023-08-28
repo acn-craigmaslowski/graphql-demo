@@ -1,0 +1,21 @@
+"""
+Root Query
+"""
+type Query {
+  """
+  Returns true if the server is up
+  """
+  # we need something here to extend onto or other code complains
+  heartbeat: Boolean
+}
+
+"""
+Root Mutation
+"""
+type Mutation {
+  """
+  Returns true
+  """
+  # we need something here to extend onto or other code complains
+  noop: Boolean
+}

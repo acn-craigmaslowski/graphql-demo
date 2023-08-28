@@ -1,0 +1,7 @@
+type Comment {
+  body: String!
+  createdDate: String!
+  id: String!
+  lastModifiedDate: String!
+  reactionCount: Int
+}

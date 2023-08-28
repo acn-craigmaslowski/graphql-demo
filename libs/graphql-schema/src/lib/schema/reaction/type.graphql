@@ -1,0 +1,9 @@
+type Reaction {
+  id: String!
+  comment: Comment
+  createdDate: String!
+  lastModifiedDate: String!
+  post: Post
+  reaction: ReactionType!
+  user: User
+}

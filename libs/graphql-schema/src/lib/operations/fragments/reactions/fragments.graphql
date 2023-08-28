@@ -1,0 +1,46 @@
+fragment ReactionScalars on Reaction {
+  id
+  lastModifiedDate
+  reaction
+}
+
+fragment ReactionCommentEdge on Comment {
+  ...CommentWithEdges
+  user {
+    ...CommentUserEdge
+  }
+}
+
+fragment ReactionPostEdge on Post {
+  ...PostScalars
+  user {
+    ...PostUserEdge
+  }
+}
+
+fragment ReactionUserEdge on User {
+  ...UserScalars
+}
+
+fragment ReactionWithUserEdge on Reaction {
+  ...ReactionScalars
+  user {
+    ...ReactionUserEdge
+  }
+}
+
+fragment ReactionWithAllEdges on Reaction {
+  ...ReactionScalars
+  comment {
+    ...ReactionCommentEdge
+    post {
+      ...CommentPostEdge
+    }
+  }
+  post {
+    ...ReactionPostEdge
+  }
+  user {
+    ...ReactionUserEdge
+  }
+}

@@ -1,0 +1,40 @@
+fragment CommentScalars on Comment {
+  body
+  id
+  lastModifiedDate
+}
+
+fragment CommentPostEdge on Post {
+  id
+  user {
+    ...UserScalars
+  }
+}
+
+fragment CommentReactionEdge on Reaction {
+  ...ReactionWithUserEdge
+}
+
+fragment CommentUserEdge on User {
+  ...UserScalars
+}
+
+fragment CommentWithEdges on Comment {
+  ...CommentScalars
+  reactions {
+    ...CommentReactionEdge
+  }
+  user {
+    ...CommentUserEdge
+  }
+}
+
+fragment CommentWithPostEdge on Comment {
+  ...CommentScalars
+  post {
+    ...CommentPostEdge
+  }
+  user {
+    ...CommentUserEdge
+  }
+}

@@ -1,0 +1,5 @@
+extend type Comment {
+  post: Post
+  reactions: [Reaction!]
+  user: User
+}

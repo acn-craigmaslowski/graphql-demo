@@ -1,0 +1,14 @@
+extend type Mutation {
+  """
+  Create a new Post
+  """
+  createPost(input: CreatePostMutationInput!): Post!
+  """
+  Update an existing Post
+  """
+  updatePost(input: UpdatePostMutationInput!): Post!
+  """
+  Delete a Post
+  """
+  deletePost(input: DeletePostMutationInput!): Post!
+}

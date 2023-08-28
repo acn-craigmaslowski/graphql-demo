@@ -1,0 +1,5 @@
+mutation deletePost($input: DeletePostMutationInput!) {
+  deletePost(input: $input) {
+    ...PostScalars
+  }
+}

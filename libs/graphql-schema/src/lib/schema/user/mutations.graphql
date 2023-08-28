@@ -1,0 +1,16 @@
+extend type Mutation {
+  """
+  Create a new Reaction
+  """
+  createUser(input: CreateUserMutationInput!): User!
+
+  """
+  Update an existing User
+  """
+  updateUser(input: UpdateUserMutationInput!): User!
+
+  """
+  Delete a User
+  """
+  deleteUser(input: DeleteUserMutationInput!): User!
+}

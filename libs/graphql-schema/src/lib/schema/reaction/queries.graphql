@@ -1,0 +1,7 @@
+extend type Query {
+  """
+  Returns a list of all Reactions for a specific for a specific user or for
+  a specific piece of content.
+  """
+  reactions(input: ReadReactionsQueryInput!): [Reaction!]!
+}

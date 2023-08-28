@@ -1,0 +1,18 @@
+input CreateUserMutationInput {
+  name: String!
+}
+
+input ReadUserQueryInput {
+  commentId: String
+  postId: String
+  userId: String
+}
+
+input UpdateUserMutationInput {
+  id: String!
+  name: String!
+}
+
+input DeleteUserMutationInput {
+  id: String!
+}

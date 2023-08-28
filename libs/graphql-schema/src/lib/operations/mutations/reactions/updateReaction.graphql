@@ -1,0 +1,5 @@
+mutation updateReaction($input: UpdateReactionMutationInput!) {
+  updateReaction(input: $input) {
+    ...ReactionScalars
+  }
+}

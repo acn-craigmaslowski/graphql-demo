@@ -1,0 +1,39 @@
+fragment PostScalars on Post {
+  id
+  body
+  commentCount
+  lastModifiedDate
+  reactionCount
+}
+
+fragment PostCommentEdge on Comment {
+  ...CommentWithEdges
+}
+
+fragment PostReactionEdge on Reaction {
+  ...ReactionWithUserEdge
+}
+
+fragment PostUserEdge on User {
+  ...UserScalars
+}
+
+fragment PostWithUserEdge on Post {
+  ...PostScalars
+  user {
+    ...PostUserEdge
+  }
+}
+
+fragment PostWithConditionalEdges on Post {
+  ...PostScalars
+  comments @include(if: $fetchComments) {
+    ...PostCommentEdge
+  }
+  reactions @include(if: $fetchReactions) {
+    ...PostReactionEdge
+  }
+  user @include(if: $fetchUser) {
+    ...PostUserEdge
+  }
+}

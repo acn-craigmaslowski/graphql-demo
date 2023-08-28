@@ -1,0 +1,10 @@
+query getPosts(
+  $input: ReadPostsQueryInput!
+  $fetchUser: Boolean!
+  $fetchComments: Boolean!
+  $fetchReactions: Boolean!
+) {
+  posts(input: $input) {
+    ...PostWithConditionalEdges
+  }
+}

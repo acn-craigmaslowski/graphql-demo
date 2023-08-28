@@ -1,0 +1,5 @@
+mutation updateComment($input: UpdateCommentMutationInput!) {
+  updateComment(input: $input) {
+    ...CommentScalars
+  }
+}

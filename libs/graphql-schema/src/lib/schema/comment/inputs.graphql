@@ -1,0 +1,19 @@
+input CreateCommentMutationInput {
+  body: String!
+  postId: String!
+}
+
+input ReadCommentsQueryInput {
+  commentId: String
+  postId: String
+  userId: String
+}
+
+input UpdateCommentMutationInput {
+  id: String!
+  body: String!
+}
+
+input DeleteCommentMutationInput {
+  id: String!
+}
