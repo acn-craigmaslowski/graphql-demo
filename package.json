@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "npm run co:login",
-    "co:login": "aws codeartifact login --tool npm --repository acn-ppes --domain ppes --domain-owner 310378384655 --region us-east-1"
+    "prepare": "npm run co:login"
   },
   "private": true,
   "dependencies": {
