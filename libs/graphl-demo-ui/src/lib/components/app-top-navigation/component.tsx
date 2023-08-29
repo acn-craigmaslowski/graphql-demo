@@ -1,6 +1,7 @@
 import {Avatar, Box, Flex, Link, Stack, Text} from "@chakra-ui/react";
 import {UserAvatar} from "../user-avatar";
 import {useAppTopNavigation} from "./hook";
+import {UserNameProfileLink} from "../user-name-profile-link";
 
 export function AppTopNavigation() {
   const {
@@ -21,9 +22,10 @@ export function AppTopNavigation() {
           </Stack>
         </Link>
         {!loading && !error && data?.currentUser && (
-          <Link href={`/profile/${data.currentUser.id}`}>
-            <UserAvatar showName={true} user={data.currentUser} />
-          </Link>
+          <Stack align="center" direction="row">
+            <UserNameProfileLink user={data.currentUser} />
+            <UserAvatar user={data.currentUser} />
+          </Stack>
         )}
       </Flex>
     </Box>

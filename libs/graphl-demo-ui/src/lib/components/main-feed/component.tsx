@@ -3,14 +3,14 @@ import {AppPage} from "../app-page";
 import {CreatePostForm} from "../create-post-form";
 import {PostList} from "../post-list";
 import {SpinnerAndError} from "../spinner-and-error";
-import {useActivityFeed} from "./hook";
+import {useMainFeed} from "./hook";
 import {GetPostsDocument} from "@graphql-demo/graphql-schema";
 
-export function ActivityFeed() {
+export function MainFeed() {
   const {
     postQuery: {error, loading},
     sortedData,
-  } = useActivityFeed();
+  } = useMainFeed();
 
   return (
     <AppPage>

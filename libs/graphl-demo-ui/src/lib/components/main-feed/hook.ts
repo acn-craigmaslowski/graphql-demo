@@ -1,9 +1,9 @@
 import {useGetPostsQuery} from "@graphql-demo/graphql-schema";
 import {sortByLastModifiedDate} from "../../etc";
 
-export type UseActivityFeedReturn = ReturnType<typeof useActivityFeed>;
+export type UseMainFeedReturn = ReturnType<typeof useMainFeed>;
 
-export function useActivityFeed() {
+export function useMainFeed() {
   const postQuery = useGetPostsQuery({
     variables: {
       input: {},

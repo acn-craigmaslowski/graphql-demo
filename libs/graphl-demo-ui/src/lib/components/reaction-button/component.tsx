@@ -15,43 +15,57 @@ import {UseReactionButtonProps, useReactionButton} from "./hook";
 export type ReactionButtonProps = UseReactionButtonProps;
 
 export function ReactionButton(props: ReactionButtonProps) {
-  const {onSelectReaction, ref} = useReactionButton(props);
+  const {currentUsersReaction} = props;
+  const {
+    menu,
+    persistence: {saveReaction},
+  } = useReactionButton(props);
+  const icon = currentUsersReaction ? (
+    <ReactionIcon reaction={currentUsersReaction.reaction} />
+  ) : (
+    <FiThumbsUp />
+  );
+  const text = currentUsersReaction ? currentUsersReaction.reaction : "Like";
 
   return (
-    <Popover closeOnBlur={true}>
+    <Popover closeOnBlur={true} isOpen={menu.disclosure.isOpen}>
       <PopoverTrigger>
-        <Button leftIcon={<FiThumbsUp />} variant="ghost">
-          Like
+        <Button
+          leftIcon={icon}
+          onClick={menu.disclosure.onOpen}
+          variant="ghost"
+        >
+          {text}
         </Button>
       </PopoverTrigger>
       <PopoverContent>
-        <ButtonGroup ref={ref} size="md" isAttached variant="outline">
+        <ButtonGroup ref={menu.ref} isAttached variant="outline">
           <Button
-            onClick={() => onSelectReaction(ReactionType.Like)}
+            onClick={() => saveReaction(ReactionType.Like)}
             variant="ghost"
           >
             <ReactionIcon reaction={ReactionType.Like} />
           </Button>
           <Button
-            onClick={() => onSelectReaction(ReactionType.Love)}
+            onClick={() => saveReaction(ReactionType.Love)}
             variant="ghost"
           >
             <ReactionIcon reaction={ReactionType.Love} />
           </Button>
           <Button
-            onClick={() => onSelectReaction(ReactionType.Wow)}
+            onClick={() => saveReaction(ReactionType.Wow)}
             variant="ghost"
           >
             <ReactionIcon reaction={ReactionType.Wow} />
           </Button>
           <Button
-            onClick={() => onSelectReaction(ReactionType.Sad)}
+            onClick={() => saveReaction(ReactionType.Sad)}
             variant="ghost"
           >
             <ReactionIcon reaction={ReactionType.Sad} />
           </Button>
           <Button
-            onClick={() => onSelectReaction(ReactionType.Angry)}
+            onClick={() => saveReaction(ReactionType.Angry)}
             variant="ghost"
           >
             <ReactionIcon reaction={ReactionType.Angry} />

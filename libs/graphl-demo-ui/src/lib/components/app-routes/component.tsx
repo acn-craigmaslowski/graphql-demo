@@ -1,6 +1,6 @@
 import {ApolloSandbox} from "@apollo/sandbox/react";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
-import {ActivityFeed} from "../activity-feed";
+import {MainFeed} from "../main-feed";
 import {UserProfile} from "../user-profile";
 import {PostDetail} from "../post-detail";
 
@@ -16,7 +16,7 @@ export function AppRoutes() {
           )}
           path="/sandbox"
         />
-        <Route Component={ActivityFeed} path="/" />
+        <Route Component={MainFeed} path="/" />
       </Routes>
     </BrowserRouter>
   );

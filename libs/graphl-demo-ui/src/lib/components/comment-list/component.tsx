@@ -1,5 +1,5 @@
 import {Button, Stack} from "@chakra-ui/react";
-import {CommentListItem} from "../comment-list-item";
+import {Comment} from "../comment";
 import {UseCommentListProps, useCommentList} from "./hook";
 import {PostWithConditionalEdgesFragment} from "@graphql-demo/graphql-schema";
 
@@ -14,9 +14,7 @@ export function CommentList({post, ...props}: CommentListProps) {
   return (
     <Stack direction="column" gap="1.5rem;">
       {limitedComments.map(comment => {
-        return (
-          <CommentListItem comment={comment} key={comment.id} post={post} />
-        );
+        return <Comment comment={comment} key={comment.id} post={post} />;
       })}
       {!expansionDisclosure.isOpen && isLimited && (
         <Button onClick={expansionDisclosure.onOpen} variant="ghost">

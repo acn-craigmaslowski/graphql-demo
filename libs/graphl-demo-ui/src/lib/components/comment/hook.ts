@@ -1,14 +1,10 @@
 import {CommentWithEdgesFragment} from "@graphql-demo/graphql-schema";
 import {useGetCurrentUsersReaction} from "../../hooks";
 
-export type UseCommentListItemProps = Parameters<typeof useCommentListItem>[0];
-export type UseCommentListItemReturn = ReturnType<typeof useCommentListItem>;
+export type UseCommentProps = Parameters<typeof useComment>[0];
+export type UseCommentReturn = ReturnType<typeof useComment>;
 
-export function useCommentListItem({
-  comment,
-}: {
-  comment: CommentWithEdgesFragment;
-}) {
+export function useComment({comment}: {comment: CommentWithEdgesFragment}) {
   const currentUsersReaction = useGetCurrentUsersReaction({
     reactions: comment.reactions || [],
   });

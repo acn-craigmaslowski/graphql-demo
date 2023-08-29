@@ -4,8 +4,8 @@ import {ReactionData} from "@graphql-demo/data-persistence";
 const resolvers: Resolvers = {
   Comment: {
     reactionCount: async (parent, _variables, {getCurrentUser, prisma}) => {
-      const postData = new ReactionData(prisma, await getCurrentUser());
-      return await postData.countCommentReactions(parent);
+      const reactionData = new ReactionData(prisma, await getCurrentUser());
+      return await reactionData.countCommentReactions(parent);
     },
   },
 };

@@ -1,32 +1,61 @@
 import {useDisclosure, useOutsideClick} from "@chakra-ui/react";
 import {
   CreateReactionMutation,
+  ReactionScalarsFragment,
   ReactionType,
+  UpdateReactionMutation,
   useCreateReactionMutation,
+  useUpdateReactionMutation,
 } from "@graphql-demo/graphql-schema";
 import {useCallback, useRef} from "react";
 import {RefetchQueries} from "../../etc";
 
-export type UseReactionButtonProps = Parameters<typeof useReactionButton>[0];
-
-export function useReactionButton({
-  commentId,
-  postId,
-  refetchQueries = [],
-}: {
+export type UseReactionButtonProps = {
   commentId?: string;
+  currentUsersReaction?: ReactionScalarsFragment | null;
   postId?: string;
-  refetchQueries?: RefetchQueries<CreateReactionMutation>;
-}) {
-  const [createReaction, {error, loading}] = useCreateReactionMutation();
-  const menuDisclosure = useDisclosure();
-  const ref = useRef<HTMLDivElement | null>(null);
+  refetchQueries?: RefetchQueries<
+    CreateReactionMutation | UpdateReactionMutation
+  >;
+};
+interface UsePersistenceProps extends UseReactionButtonProps {
+  menu: UseMenuReturn;
+}
 
+export type UseReactionButtonReturn = ReturnType<typeof useReactionButton>;
+export type UseMenuReturn = ReturnType<typeof useMenu>;
+
+function useMenu() {
+  const disclosure = useDisclosure();
+  const ref = useRef<HTMLDivElement | null>(null);
   useOutsideClick({
     ref,
-    handler: menuDisclosure.onClose,
+    handler: disclosure.onClose,
   });
-  const onSelectReaction = useCallback(
+
+  return {
+    disclosure,
+    ref,
+  };
+}
+
+function usePersistence(props: UsePersistenceProps) {
+  const {
+    commentId,
+    currentUsersReaction,
+    menu,
+    postId,
+    refetchQueries = [],
+  } = props;
+  const [createReaction, createStatus] = useCreateReactionMutation();
+  const [updateReaction, updateStatus] = useUpdateReactionMutation();
+
+  const error = currentUsersReaction ? updateStatus.error : createStatus.error;
+  const loading = currentUsersReaction
+    ? updateStatus.loading
+    : createStatus.loading;
+
+  const saveReaction = useCallback(
     async (reaction: ReactionType) => {
       if (!commentId && !postId) {
         throw new Error(
@@ -34,7 +63,18 @@ export function useReactionButton({
         );
       }
 
-      menuDisclosure.onClose();
+      menu.disclosure.onClose();
+      if (currentUsersReaction) {
+        await updateReaction({
+          refetchQueries,
+          variables: {
+            input: {
+              id: currentUsersReaction.id,
+              reaction,
+            },
+          },
+        });
+      }
       await createReaction({
         refetchQueries,
         variables: {
@@ -46,8 +86,23 @@ export function useReactionButton({
         },
       });
     },
-    [commentId, createReaction, menuDisclosure, postId, refetchQueries]
+    [
+      commentId,
+      createReaction,
+      currentUsersReaction,
+      menu.disclosure,
+      postId,
+      refetchQueries,
+      updateReaction,
+    ]
   );
 
-  return {error, loading, menuDisclosure, onSelectReaction, ref};
+  return {error, loading, saveReaction};
+}
+
+export function useReactionButton(props: UseReactionButtonProps) {
+  const menu = useMenu();
+  const persistence = usePersistence({...props, menu});
+
+  return {menu, persistence};
 }

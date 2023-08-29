@@ -4,13 +4,10 @@ import {Flex, Stack} from "@chakra-ui/react";
 import {ReactionIcon} from "../reaction-icon";
 
 export interface ReactionsSummaryProps extends UseReactionsSummaryProps {
-  hideMessage?: boolean;
+  showCountOnlyInMessage?: boolean;
 }
 
-export function ReactionsSummary({
-  hideMessage,
-  ...props
-}: ReactionsSummaryProps) {
+export function ReactionsSummary(props: ReactionsSummaryProps) {
   const {haveAngry, haveLike, haveLove, haveSad, haveWow, message} =
     useReactionsSummary(props);
 
@@ -24,7 +21,7 @@ export function ReactionsSummary({
           {haveSad && <ReactionIcon reaction={ReactionType.Sad} />}
           {haveWow && <ReactionIcon reaction={ReactionType.Wow} />}
         </Flex>
-        {!hideMessage && message}
+        {message}
       </Flex>
     </Stack>
   );

@@ -12,17 +12,17 @@ export function usePost({
   isCommentSectionExpandedByDefault?: boolean;
   post: PostWithConditionalEdgesFragment;
 }) {
-  const commentsExpansionDisclosure = useDisclosure({
+  const commentListDisclosure = useDisclosure({
     defaultIsOpen: isCommentSectionExpandedByDefault || false,
   });
   const currentUsersReaction = useGetCurrentUsersReaction({
     reactions: post.reactions || [],
   });
-  const isCommentFormVisibleDisclosure = useDisclosure();
+  const commentFormDisclosure = useDisclosure();
 
   return {
-    commentsExpansionDisclosure,
+    commentListDisclosure,
+    commentFormDisclosure,
     currentUsersReaction,
-    isCommentFormVisibleDisclosure,
   };
 }

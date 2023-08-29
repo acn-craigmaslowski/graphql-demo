@@ -3,6 +3,13 @@ import {
   useGetCurrentUserQuery,
 } from "@graphql-demo/graphql-schema";
 
+export type UseGetCurrentUsersReactionProps = Parameters<
+  typeof useGetCurrentUsersReaction
+>[0];
+export type UseGetCurrentUsersReactionReturn = ReturnType<
+  typeof useGetCurrentUsersReaction
+>;
+
 export function useGetCurrentUsersReaction({
   reactions,
 }: {

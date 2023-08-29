@@ -1,4 +1,4 @@
-import {Avatar, Stack, Text} from "@chakra-ui/react";
+import {Avatar, Link} from "@chakra-ui/react";
 import {UseUserAvatarProps, useUserAvatar} from "./hook";
 
 export interface UserAvatarProps extends UseUserAvatarProps {
@@ -9,14 +9,15 @@ export function UserAvatar({showName = false, ...props}: UserAvatarProps) {
   const {user} = props;
   const {onClick} = useUserAvatar(props);
 
-  return (
-    <Stack align="center" direction="row">
-      {showName && <Text>Jackie Moon</Text>}
+  return user ? (
+    <Link href={`/profile/${user.id}`}>
       <Avatar
         onClick={onClick}
         name={user.name}
         src={user.profileImageUrl || undefined}
       />
-    </Stack>
+    </Link>
+  ) : (
+    <Avatar name="Unknown User" />
   );
 }
